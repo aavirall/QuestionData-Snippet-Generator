@@ -1,0 +1,41 @@
+from Question import *
+a = Question()
+a.set_sort_key("15")
+a.set_partition_key("questions")
+
+a.set_question_id("15")
+a.set_title("Do you indulge in these?")
+a.set_subtitle("")
+a.set_subtitle_2("")
+a.set_warning("")
+a.set_warning_type("")
+a.set_question_type("Indulgement")
+a.set_option_type("list_cell_snippet")
+a.set_selection_type("single_selection")
+a.set_progress("0.6")
+a.set_conditions("")
+a.set_next_button_text("Next")
+
+options = []
+o = Options()
+o.set_option_id("1")
+o.set_option_image_url("HalfCookie")
+o.set_option_text("Smoke")
+options.append(o)
+o = Options()
+o.set_option_id("2")
+o.set_option_image_url("Drink")
+o.set_option_text("Drink")
+options.append(o)
+o = Options()
+o.set_option_id("3")
+o.set_option_image_url("Pill")
+o.set_option_text("Weed or drugs")
+#//////
+o.set_option_subtext("")
+#/////
+options.append(o)
+
+ops = options.__str__()
+a.set_options(ops)
+rep = a.__str__()
