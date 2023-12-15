@@ -104,6 +104,8 @@ class Options:
     option_text = ""
     option_image_url = ""
     option_subtext = ""
+    option_text_left_icon = ""
+    option_subtext_left_icon = ""
     def __init__(self):
         pass
 
@@ -119,5 +121,38 @@ class Options:
     def set_option_subtext(self, option_subtext):
         self.option_subtext = option_subtext
 
+    def set_option_title(self, option_title):
+        self.option_title = option_title
+
+    def set_option_text_left_icon(self, option_text_left_icon):
+        self.option_text_left_icon = option_text_left_icon
+
+    def set_option_subtext_left_icon(self, option_subtext_left_icon):
+        self.option_subtext_left_icon = option_subtext_left_icon
+
     def __repr__(self):
         return json.dumps(self.__dict__)
+    
+class OptionTitle:
+    text = ""
+    left_icon = ""
+    right_icon = ""
+
+    def __init__(self):
+        pass
+
+    def set_text(self, text):
+        self.text = text
+
+    def set_left_icon(self,left_icon):
+        self.left_icon = left_icon
+
+    def set_right_icon(self,right_icon):
+        self.right_icon = right_icon
+    
+    def __repr__(self):
+        return json.dumps(self.__dict__)
+    
+    def toJSON(self):
+        return json.dumps(self, default=lambda o: o.__dict__, 
+            sort_keys=True)

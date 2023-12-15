@@ -13,7 +13,7 @@ a.set_warning_type("")
 a.set_question_type("Partner_Gender_Preference")
 a.set_option_type("list_cell_snippet")
 a.set_selection_type("multi_selection")
-a.set_progress("0.3")
+a.set_progress("0.18")
 a.set_conditions("[{\"question_id\": \"3\", \"option\": \"3\"}]")
 a.set_next_button_text("Next")
 
