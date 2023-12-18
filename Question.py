@@ -7,18 +7,18 @@ class Question:
     progress = "0.8"
     partition_key = "questions"
     sort_key = "sort_key"
-    title = "title" 
-    subtitle = "subtitle" 
-    subtitle_2 = "subtitle_2" 
-    warning = "warning"
-    warning_type = "warning_type"
-    question_type = "question_type"
-    option_type = "option_type" 
-    selection_type = "selection_type" 
-    options = "options" 
-    question_id = "question_id" 
-    conditions = "conditions" 
-    next_button_text = "next_button_text" 
+    title = "" 
+    subtitle = "" 
+    subtitle_2 = "" 
+    warning = ""
+    warning_type = ""
+    question_type = ""
+    option_type = "" 
+    selection_type = "" 
+    options = "" 
+    question_id = "" 
+    conditions = "" 
+    next_button_text = "" 
     projections = projections_string
     def __init__(self):
         pass
@@ -33,13 +33,13 @@ class Question:
         self.partition_key = partition_key
 
     def set_title(self, title):
-        self.title = title
+        self.title = str(title)
 
     def set_subtitle(self, subtitle):
-        self.subtitle = subtitle
+        self.subtitle = str(subtitle)
 
     def set_subtitle_2(self, subtitle_2):
-        self.subtitle_2 = subtitle_2
+        self.subtitle_2 = str(subtitle_2)
 
     def set_warning(self, warning):
         self.warning = warning
@@ -94,10 +94,6 @@ class Question:
         ret["plan_name"] = self.plan_name
         ret["params"] = params
         return json.dumps(ret)
-    
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True, indent=4)
 
 class Options:
     option_id = ""
@@ -106,6 +102,8 @@ class Options:
     option_subtext = ""
     option_text_left_icon = ""
     option_subtext_left_icon = ""
+    option_title = ""
+    option_subtitle = ""
     def __init__(self):
         pass
 
@@ -124,6 +122,9 @@ class Options:
     def set_option_title(self, option_title):
         self.option_title = option_title
 
+    def set_option_subtitle(self, option_subtitle):
+        self.option_subtitle = option_subtitle
+
     def set_option_text_left_icon(self, option_text_left_icon):
         self.option_text_left_icon = option_text_left_icon
 
@@ -131,9 +132,20 @@ class Options:
         self.option_subtext_left_icon = option_subtext_left_icon
 
     def __repr__(self):
-        return json.dumps(self.__dict__)
+        ret = {}
+        ret["option_id"] = self.option_id
+        ret["option_text"] = self.option_text
+        ret["option_image_url"] = self.option_image_url
+        ret["option_subtext"] = self.option_subtext
+        ret["option_text_left_icon"] = self.option_text_left_icon
+        ret["option_subtext_left_icon"] = self.option_subtext_left_icon
+        if self.option_title != "":
+            ret["option_title"] = self.option_title.__dict__
+        if self.option_subtitle != "":
+            ret["option_subtitle"] = self.option_subtitle.__dict__
+        return json.dumps(ret)
     
-class OptionTitle:
+class TextItem:
     text = ""
     left_icon = ""
     right_icon = ""
@@ -153,6 +165,3 @@ class OptionTitle:
     def __repr__(self):
         return json.dumps(self.__dict__)
     
-    def toJSON(self):
-        return json.dumps(self, default=lambda o: o.__dict__, 
-            sort_keys=True)
