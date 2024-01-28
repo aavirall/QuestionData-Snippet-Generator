@@ -1,17 +1,20 @@
 import json
 
+TOTAL_QUESTIONS = 40
 class Question:
     plan_name = "dynamodb_put"
     params = {}
-    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"warning\", \"warning_type\", \"question_type\", \"option_type\",\"selection_type\",\"options\", \"question_id\",\"conditions\", \"next_button_text\", \"progress\"]'
-    progress = "0.8"
+    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"option_type\",\"selection_type\",\"options\", \"question_id\",\"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
+    progress = ""
     partition_key = "questions"
     sort_key = "sort_key"
     title = "" 
     subtitle = "" 
     subtitle_2 = "" 
-    warning = ""
-    warning_type = ""
+    subtitle_3 = "" 
+    consent_text = ""
+    alert = ""
+    alert_type = ""
     question_type = ""
     option_type = "" 
     selection_type = "" 
@@ -41,11 +44,17 @@ class Question:
     def set_subtitle_2(self, subtitle_2):
         self.subtitle_2 = str(subtitle_2)
 
-    def set_warning(self, warning):
-        self.warning = warning
+    def set_subtitle_3(self, subtitle_3):
+        self.subtitle_3 = str(subtitle_3)
 
-    def set_warning_type(self, warning_type):
-        self.warning_type = warning_type
+    def set_alert(self, alert):
+        self.alert = alert
+
+    def set_alert_type(self, alert_type):
+        self.alert_type = alert_type
+
+    def set_consent_text(self, consent_text):
+        self.consent_text = str(consent_text)
 
     def set_question_type(self, question_type):
         self.question_type = question_type
@@ -80,8 +89,10 @@ class Question:
         params["title"] = self.title
         params["subtitle"] = self.subtitle
         params["subtitle_2"] = self.subtitle_2
-        params["warning"] = self.warning
-        params["warning_type"] = self.warning_type
+        params["subtitle_3"] = self.subtitle_3
+        params["consent_text"] = self.consent_text
+        params["alert"] = self.alert
+        params["alert_type"] = self.alert_type
         params["question_type"] = self.question_type
         params["option_type"] = self.option_type
         params["selection_type"] = self.selection_type
@@ -97,27 +108,17 @@ class Question:
 
 class Options:
     option_id = ""
-    option_text = ""
-    option_image_url = ""
-    option_subtext = ""
-    option_text_left_icon = ""
-    option_subtext_left_icon = ""
     option_title = ""
     option_subtitle = ""
+    option_text_field = ""
+    option_type = ""
+    bottom_sheet = ""
+    option_image_url = ""
     def __init__(self):
         pass
 
     def set_option_id(self, option_id):
         self.option_id = option_id
-
-    def set_option_text(self, option_text):
-        self.option_text = option_text
-
-    def set_option_image_url(self, option_image_url):
-        self.option_image_url = option_image_url
-    
-    def set_option_subtext(self, option_subtext):
-        self.option_subtext = option_subtext
 
     def set_option_title(self, option_title):
         self.option_title = option_title
@@ -125,24 +126,31 @@ class Options:
     def set_option_subtitle(self, option_subtitle):
         self.option_subtitle = option_subtitle
 
-    def set_option_text_left_icon(self, option_text_left_icon):
-        self.option_text_left_icon = option_text_left_icon
+    def set_option_image_url(self, option_image_url):
+        self.option_image_url = option_image_url
 
-    def set_option_subtext_left_icon(self, option_subtext_left_icon):
-        self.option_subtext_left_icon = option_subtext_left_icon
+    def set_option_text_field(self, option_text_field):
+        self.option_text_field = option_text_field
+    
+    def set_option_type(self, option_type):
+        self.option_type = option_type
+    
+    def set_bottom_sheet(self, bottom_sheet):
+        self.bottom_sheet = bottom_sheet
 
     def __repr__(self):
         ret = {}
         ret["option_id"] = self.option_id
-        ret["option_text"] = self.option_text
         ret["option_image_url"] = self.option_image_url
-        ret["option_subtext"] = self.option_subtext
-        ret["option_text_left_icon"] = self.option_text_left_icon
-        ret["option_subtext_left_icon"] = self.option_subtext_left_icon
+        ret["option_type"] = self.option_type
         if self.option_title != "":
             ret["option_title"] = self.option_title.__dict__
         if self.option_subtitle != "":
             ret["option_subtitle"] = self.option_subtitle.__dict__
+        if self.option_text_field != "":
+            ret["option_text_field"] = self.option_text_field.__dict__
+        if self.bottom_sheet != "":
+            ret["bottom_sheet"] = self.bottom_sheet.__dict__
         return json.dumps(ret)
     
 class TextItem:
@@ -165,3 +173,87 @@ class TextItem:
     def __repr__(self):
         return json.dumps(self.__dict__)
     
+class TextField:
+    is_multi_line         = ""
+    icon                = ""
+    placeholder         = ""
+    text                = ""
+    placeholder_on_editing = ""
+    title = ""
+
+    def __init__(self):
+        pass
+
+    def set_isMultiLine(self, is_multi_line):
+        self.is_multi_line = is_multi_line
+    
+    def set_icon(self, icon):
+        self.icon = icon
+    
+    def set_title(self, title):
+        self.title = title.__dict__
+
+    def set_placeholder(self, placeholder):
+        self.placeholder = placeholder.__dict__
+    
+    def placeholderOnEditing(self, placeholderOnEditing):
+        self.placeholder_on_editing = placeholderOnEditing.__dict__
+    
+    def set_text(self, text):
+        self.text = text.__dict__
+    
+    def __repr__(self):
+        return json.dumps(self.__dict__)
+    
+class BottomSheet:
+    selection_type = ""
+    options = ""
+    title = ""
+    subtitle = ""
+    bottom_button_text = ""
+    bottom_button_icon = ""
+
+    def __init__(self):
+        pass
+
+    def set_selection_type(self, selection_type):
+        self.selection_type = selection_type
+    
+    def set_options(self, options):
+        self.options = [make_json(ele.__dict__) for ele in options]
+    
+    def set_title(self, title):
+        self.title = title.__dict__
+    
+    def set_subtitle(self, subtitle):
+        self.subtitle = subtitle.__dict__
+    
+    def set_bottom_button_text(self, bottom_button_text):
+        self.bottom_button_text = bottom_button_text
+    
+    def set_bottom_button_icon(self, bottom_button_icon):
+        self.bottom_button_icon = bottom_button_icon
+    
+
+def make_json(ele):
+    ret = {}
+    for k,v in ele.items():
+        if type(v) != str:
+            ret[k] = v.__dict__
+        else:
+            ret[k] = v
+    return ret
+
+
+class Conditions:
+    question_id = ""
+    option  = ""
+
+    def set_question_id(self, question_id):
+        self.question_id = question_id
+
+    def set_option(self, option):
+        self.option = option
+
+    def __repr__(self):
+        return json.dumps(self.__dict__)

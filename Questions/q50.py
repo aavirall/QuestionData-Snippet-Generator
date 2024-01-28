@@ -1,17 +1,20 @@
 from Question import *
 a = Question()
-a.set_sort_key("15")
+a.set_sort_key("50")
 a.set_partition_key("questions")
 
-a.set_question_id("15")
+a.set_question_id("50")
 at = TextItem()
-at.set_text("What do you do for work?")
+at.set_text("Tell me about your education")
 a.set_title(at)
-a.set_subtitle("")
+at = TextItem()
+at.set_text("Consider adding at least your high school and graduation details")
+a.set_subtitle(at)
+
 a.set_subtitle_2("")
 a.set_alert("")
 a.set_alert_type("")
-a.set_question_type("Employment_Current")
+a.set_question_type("Employment")
 a.set_option_type("list_cell_snippet")
 a.set_selection_type("single_selection")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
@@ -22,13 +25,4 @@ options = []
 
 ops = options.__str__()
 a.set_options(ops)
-
-conditions = []
-c = Conditions()
-c.set_question_id("14")
-c.set_option("1,2,3,4,6")
-conditions.append(c)
-conditions = conditions.__str__()
-a.set_conditions(conditions)
-
 rep = a.__str__()
