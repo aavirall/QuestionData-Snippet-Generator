@@ -1,22 +1,28 @@
 from Question import *
 a = Question()
-a.set_sort_key("130")
+a.set_sort_key("11")
 a.set_partition_key("questions")
 
-a.set_question_id("130")
+a.set_question_id("11")
 at = TextItem()
-at.set_text("Do you smoke?")
+at.set_text("Do you consume marijuana?")
 a.set_title(at)
-a.set_subtitle("")
+at = TextItem()
+at.set_text("Not shown on your profile")
+at.set_left_icon("ead3")
+a.set_subtitle(at)
 a.set_subtitle_2("")
 a.set_alert("")
 a.set_alert_type("")
-a.set_question_type("Smoke")
-a.set_option_type("list_cell_snippet")
+a.set_question_type("Marijuana")
+a.set_option_type("card_v_list")
 a.set_selection_type("single_selection")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 a.set_conditions("")
 a.set_next_button_text("Next")
+a.set_skip_button_text("Skip for now")
+
+
 
 options = []
 o = Options()

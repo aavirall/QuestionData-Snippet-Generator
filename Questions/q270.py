@@ -22,7 +22,7 @@ options = []
 o = Options()
 o.set_option_id("1")
 of = TextField()
-of.set_icon("ebdd")
+of.set_left_icon("ebdd")
 of.set_isMultiLine(False)
 oft = TextItem()
 oft.set_text("Search your city")

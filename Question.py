@@ -22,6 +22,7 @@ class Question:
     question_id = "" 
     conditions = "" 
     next_button_text = "" 
+    skip_button_text = ""
     projections = projections_string
     def __init__(self):
         pass
@@ -36,16 +37,16 @@ class Question:
         self.partition_key = partition_key
 
     def set_title(self, title):
-        self.title = str(title)
+        self.title = title
 
     def set_subtitle(self, subtitle):
-        self.subtitle = str(subtitle)
+        self.subtitle = subtitle
 
     def set_subtitle_2(self, subtitle_2):
-        self.subtitle_2 = str(subtitle_2)
+        self.subtitle_2 = subtitle_2
 
     def set_subtitle_3(self, subtitle_3):
-        self.subtitle_3 = str(subtitle_3)
+        self.subtitle_3 = subtitle_3
 
     def set_alert(self, alert):
         self.alert = alert
@@ -54,7 +55,7 @@ class Question:
         self.alert_type = alert_type
 
     def set_consent_text(self, consent_text):
-        self.consent_text = str(consent_text)
+        self.consent_text = consent_text
 
     def set_question_type(self, question_type):
         self.question_type = question_type
@@ -76,6 +77,9 @@ class Question:
 
     def set_next_button_text(self, next_button_text):
         self.next_button_text = next_button_text
+    
+    def set_skip_button_text(self, skip_button_text):
+        self.skip_button_text = skip_button_text
 
     def set_projections(self, projections):
         self.projections = projections
@@ -83,24 +87,25 @@ class Question:
     def __repr__(self):
         ret = {}
         params = {}
-        params["partition_key"] = self.partition_key
-        params["sort_key"] = self.sort_key
-        params["progress"] = self.progress
-        params["title"] = self.title
-        params["subtitle"] = self.subtitle
-        params["subtitle_2"] = self.subtitle_2
-        params["subtitle_3"] = self.subtitle_3
-        params["consent_text"] = self.consent_text
-        params["alert"] = self.alert
-        params["alert_type"] = self.alert_type
-        params["question_type"] = self.question_type
-        params["option_type"] = self.option_type
-        params["selection_type"] = self.selection_type
-        params["options"] = self.options
-        params["question_id"] = self.question_id
-        params["conditions"] = self.conditions
-        params["next_button_text"] = self.next_button_text
-        params["projections"] = self.projections
+        params["partition_key"] = str(self.partition_key)
+        params["sort_key"] = str(self.sort_key)
+        params["progress"] = str(self.progress)
+        params["title"] = str(self.title)
+        params["subtitle"] = str(self.subtitle)
+        params["subtitle_2"] = str(self.subtitle_2)
+        params["subtitle_3"] = str(self.subtitle_3)
+        params["consent_text"] = str(self.consent_text)
+        params["alert"] = str(self.alert)
+        params["alert_type"] = str(self.alert_type)
+        params["question_type"] = str(self.question_type)
+        params["option_type"] = str(self.option_type)
+        params["selection_type"] = str(self.selection_type)
+        params["options"] = str(self.options)
+        params["question_id"] = str(self.question_id)
+        params["conditions"] = str(self.conditions)
+        params["next_button_text"] = str(self.next_button_text)
+        params["skip_button_text"] = str(self.skip_button_text)
+        params["projections"] = str(self.projections)
 
         ret["plan_name"] = self.plan_name
         ret["params"] = params
@@ -175,11 +180,13 @@ class TextItem:
     
 class TextField:
     is_multi_line         = ""
-    icon                = ""
+    left_icon                = ""
+    right_icon                = ""
     placeholder         = ""
     text                = ""
     placeholder_on_editing = ""
     title = ""
+    error_label = ""
 
     def __init__(self):
         pass
@@ -187,11 +194,17 @@ class TextField:
     def set_isMultiLine(self, is_multi_line):
         self.is_multi_line = is_multi_line
     
-    def set_icon(self, icon):
-        self.icon = icon
+    def set_left_icon(self, icon):
+        self.left_icon = icon
+    
+    def set_right_icon(self, icon):
+        self.right_icon = icon
     
     def set_title(self, title):
         self.title = title.__dict__
+
+    def set_error_label(self, label):
+        self.error_label = label.__dict__
 
     def set_placeholder(self, placeholder):
         self.placeholder = placeholder.__dict__

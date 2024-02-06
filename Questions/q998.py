@@ -15,7 +15,7 @@ a.set_alert("")
 a.set_alert_type("")
 
 a.set_question_type("Partner_Gender_Preference")
-a.set_option_type("list_cell_snippet")
+a.set_option_type("card_v_list")
 a.set_selection_type("multi_selection")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 # a.set_conditions("[{\"question_id\": \"3\", \"option\": \"3\"}]")
