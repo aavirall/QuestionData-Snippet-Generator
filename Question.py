@@ -4,7 +4,7 @@ TOTAL_QUESTIONS = 40
 class Question:
     plan_name = "dynamodb_put"
     params = {}
-    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"option_type\",\"selection_type\",\"options\", \"question_id\",\"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
+    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"layout\",\"selection_type\",\"options\", \"question_id\",\"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
     progress = ""
     partition_key = "questions"
     sort_key = "sort_key"
@@ -16,7 +16,7 @@ class Question:
     alert = ""
     alert_type = ""
     question_type = ""
-    option_type = "" 
+    layout = "" 
     selection_type = "" 
     options = "" 
     question_id = "" 
@@ -60,8 +60,8 @@ class Question:
     def set_question_type(self, question_type):
         self.question_type = question_type
 
-    def set_option_type(self, option_type):
-        self.option_type = option_type
+    def set_layout(self, layout):
+        self.layout = layout
 
     def set_selection_type(self, selection_type):
         self.selection_type = selection_type
@@ -98,7 +98,7 @@ class Question:
         params["alert"] = str(self.alert)
         params["alert_type"] = str(self.alert_type)
         params["question_type"] = str(self.question_type)
-        params["option_type"] = str(self.option_type)
+        params["layout"] = str(self.layout)
         params["selection_type"] = str(self.selection_type)
         params["options"] = str(self.options)
         params["question_id"] = str(self.question_id)
@@ -111,12 +111,13 @@ class Question:
         ret["params"] = params
         return json.dumps(ret)
 
-class Options:
+class Option:
     option_id = ""
     option_title = ""
     option_subtitle = ""
     option_text_field = ""
     option_type = ""
+    option_shape = ""
     bottom_sheet = ""
     option_image_url = ""
     def __init__(self):
@@ -140,6 +141,9 @@ class Options:
     def set_option_type(self, option_type):
         self.option_type = option_type
     
+    def set_option_shape(self, shape):
+        self.option_shape = shape
+    
     def set_bottom_sheet(self, bottom_sheet):
         self.bottom_sheet = bottom_sheet
 
@@ -148,6 +152,7 @@ class Options:
         ret["option_id"] = self.option_id
         ret["option_image_url"] = self.option_image_url
         ret["option_type"] = self.option_type
+        ret["option_shape"] = self.option_shape
         if self.option_title != "":
             ret["option_title"] = self.option_title.__dict__
         if self.option_subtitle != "":
@@ -223,6 +228,7 @@ class BottomSheet:
     options = ""
     title = ""
     subtitle = ""
+    layout = ""
     bottom_button_text = ""
     bottom_button_icon = ""
 
@@ -247,6 +253,9 @@ class BottomSheet:
     def set_bottom_button_icon(self, bottom_button_icon):
         self.bottom_button_icon = bottom_button_icon
     
+    def set_layout(self, layout):
+        self.layout = layout
+    
 
 def make_json(ele):
     ret = {}
@@ -270,3 +279,20 @@ class Conditions:
 
     def __repr__(self):
         return json.dumps(self.__dict__)
+    
+class ButtonModel:
+    title = ""
+    left_icon = ""
+    right_icon = ""
+    def __init__(self):
+        pass
+
+    def set_title(self, title):
+        self.title = title
+    
+    def set_left_icon(self, left_icon):
+        self.left_icon = left_icon
+    
+    def set_right_icon(self, right_icon):
+        self.right_icon = right_icon
+    
