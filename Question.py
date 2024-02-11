@@ -1,6 +1,6 @@
 import json
 
-TOTAL_QUESTIONS = 40
+TOTAL_QUESTIONS = 27
 class Question:
     plan_name = "dynamodb_put"
     params = {}
@@ -120,6 +120,7 @@ class Option:
     option_shape = ""
     bottom_sheet = ""
     option_image_url = ""
+    # option_picker_type = ""
     def __init__(self):
         pass
 
@@ -146,6 +147,9 @@ class Option:
     
     def set_bottom_sheet(self, bottom_sheet):
         self.bottom_sheet = bottom_sheet
+    
+    # def set_option_picker_type(self, option_picker_type):
+    #     self.option_picker_type = option_picker_type
 
     def __repr__(self):
         ret = {}
@@ -153,6 +157,7 @@ class Option:
         ret["option_image_url"] = self.option_image_url
         ret["option_type"] = self.option_type
         ret["option_shape"] = self.option_shape
+        # ret["option_picker_type"] = self.option_picker_type
         if self.option_title != "":
             ret["option_title"] = self.option_title.__dict__
         if self.option_subtitle != "":
@@ -227,10 +232,19 @@ class BottomSheet:
     selection_type = ""
     options = ""
     title = ""
-    subtitle = ""
+    subtitle_1 = ""
+    subtitle_2 = ""
     layout = ""
-    bottom_button_text = ""
-    bottom_button_icon = ""
+
+    text_field = ""
+    search_fields = ""
+    picker_type = ""
+
+    button_1_text = ""
+    button_1_icon = ""
+    button_2_text = ""
+    button_2_icon = ""
+    consent_text = ""
 
     def __init__(self):
         pass
@@ -244,17 +258,39 @@ class BottomSheet:
     def set_title(self, title):
         self.title = title.__dict__
     
-    def set_subtitle(self, subtitle):
-        self.subtitle = subtitle.__dict__
+    def set_subtitle_1(self, subtitle):
+        self.subtitle_1 = subtitle.__dict__
     
-    def set_bottom_button_text(self, bottom_button_text):
-        self.bottom_button_text = bottom_button_text
+    def set_subtitle_2(self, subtitle):
+        self.subtitle_2 = subtitle.__dict__
     
-    def set_bottom_button_icon(self, bottom_button_icon):
-        self.bottom_button_icon = bottom_button_icon
+    def set_button_1_text(self, button_text):
+        self.button_1_text = button_text
+    
+    def set_button_1_icon(self, button_icon):
+        self.button_1_icon = button_icon
+    
+    def set_button_2_text(self, button_text):
+        self.button_2_text = button_text
+    
+    def set_button_2_icon(self, button_icon):
+        self.button_2_icon = button_icon
     
     def set_layout(self, layout):
         self.layout = layout
+
+    def set_text_field(self, tf):
+        self.text_field = tf.__dict__
+
+    def set_search_fields(self, options):
+        self.search_fields = [make_json(ele.__dict__) for ele in options]
+
+    def set_picker_type(self, picker_type):
+        self.picker_type = picker_type
+        
+    
+    def set_consent_text(self, consent):
+        self.consent_text = consent
     
 
 def make_json(ele):
@@ -296,3 +332,5 @@ class ButtonModel:
     def set_right_icon(self, right_icon):
         self.right_icon = right_icon
     
+class SearchFields:
+    items = ""
