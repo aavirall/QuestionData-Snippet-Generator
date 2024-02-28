@@ -1,9 +1,0 @@
-{'option_id': '1', 'option_title': {'text': 'No Preference'}}
-{'option_id': '2', 'option_title': {'text': 'Younger or upto 2 yrs older than me'}}
-{'option_id': '3', 'option_title': {'text': 'Only younger than me'}}
-{'option_id': '4', 'option_title': {'text': 'Older or upto 2 yrs younger than me'}}
-{'option_id': '5', 'option_title': {'text': 'Only older than me'}}
-{'option_id': '1', 'option_title': {'text': 'Never married'}}
-{'option_id': '2', 'option_title': {'text': 'Divorced'}}
-{'option_id': '3', 'option_title': {'text': 'Separated/divorce in progress'}}
-{'option_id': '4', 'option_title': {'text': 'Widowed'}}

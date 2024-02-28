@@ -12,11 +12,12 @@ a.set_subtitle_2("")
 a.set_alert("")
 a.set_alert_type("")
 a.set_question_type("Birthplace")
-a.set_layout("option_card_text_field_snippet")
-a.set_selection_type("single_selection")
+a.set_layout("search_fields")
+a.set_selection_type("1")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 a.set_conditions("")
 a.set_next_button_text("Next")
+
 
 options = []
 o = Option()
@@ -26,29 +27,16 @@ ot.set_text("Search your city")
 ot.set_left_icon("ebdd")
 o.set_option_title(ot)
 o.set_option_type("option_card")
-
 bs = BottomSheet()
 bs.set_selection_type("1")
 ot = TextItem()
 ot.set_text("Select your current city")
 bs.set_title(ot)
-bs.set_layout("bottom_sheet_search_field")
-bsops = []
-bso = Option()
-bso.set_option_id("1")
-bsotf = TextField()
-bsotf.set_left_icon("ebdd")
-bsotft = TextItem()
-bsotft.set_text("Search your city")
-bsotf.set_placeholder(bsotft)
-bso.set_option_text_field(bsotf)
-bsops.append(bso)
-bs.set_options(bsops)
-
+bs.set_screen_type("city_selector_screen")
 o.set_bottom_sheet(bs)
-
-
 options.append(o)
+
+
 
 ops = options.__str__()
 a.set_options(ops)
@@ -69,7 +57,7 @@ rep = a.__str__()
 # a.set_warning_type("")
 # a.set_question_type("Indulgement")
 # a.set_option_type("option_card_v_list")
-# a.set_selection_type("multi_selection")
+# a.set_selection_type("20")
 # a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 # a.set_conditions("")
 # a.set_next_button_text("Next")

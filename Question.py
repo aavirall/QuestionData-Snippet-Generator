@@ -1,10 +1,10 @@
 import json
 
-TOTAL_QUESTIONS = 27
+TOTAL_QUESTIONS = 30
 class Question:
     plan_name = "dynamodb_put"
     params = {}
-    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"layout\",\"selection_type\",\"options\", \"question_id\",\"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
+    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"layout\",\"selection_type\",\"options\", \"question_id\", \"question_screen_id\", \"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
     progress = ""
     partition_key = "questions"
     sort_key = "sort_key"
@@ -20,6 +20,7 @@ class Question:
     selection_type = "" 
     options = "" 
     question_id = "" 
+    question_screen_id = "" 
     conditions = "" 
     next_button_text = "" 
     skip_button_text = ""
@@ -71,6 +72,10 @@ class Question:
 
     def set_question_id(self, question_id):
         self.question_id = question_id
+        self.question_screen_id = f"question_screen_{self.question_id}"
+
+    def set_question_screen_id(self, question_screen_id):
+        self.set_question_screen_id = question_screen_id
 
     def set_conditions(self, conditions):
         self.conditions = conditions
@@ -102,6 +107,7 @@ class Question:
         params["selection_type"] = str(self.selection_type)
         params["options"] = str(self.options)
         params["question_id"] = str(self.question_id)
+        params["question_screen_id"] = str(self.question_screen_id)
         params["conditions"] = str(self.conditions)
         params["next_button_text"] = str(self.next_button_text)
         params["skip_button_text"] = str(self.skip_button_text)
@@ -189,6 +195,7 @@ class TextItem:
         return json.dumps(self.__dict__)
     
 class TextField:
+    id = ""
     is_multi_line         = ""
     left_icon                = ""
     right_icon                = ""
@@ -200,6 +207,9 @@ class TextField:
 
     def __init__(self):
         pass
+
+    def set_id(self, id):
+        self.id = id
 
     def set_isMultiLine(self, is_multi_line):
         self.is_multi_line = is_multi_line
@@ -234,6 +244,9 @@ class BottomSheet:
     title = ""
     subtitle_1 = ""
     subtitle_2 = ""
+    screen_type = ""
+    alert = ""
+    alert_type = ""
     layout = ""
 
     text_field = ""
@@ -245,6 +258,7 @@ class BottomSheet:
     button_2_text = ""
     button_2_icon = ""
     consent_text = ""
+    preselected = ""
 
     def __init__(self):
         pass
@@ -276,8 +290,17 @@ class BottomSheet:
     def set_button_2_icon(self, button_icon):
         self.button_2_icon = button_icon
     
+    def set_screen_type(self, screen_type):
+        self.screen_type = screen_type
+    
     def set_layout(self, layout):
         self.layout = layout
+    
+    def set_alert(self, alert):
+        self.alert = alert
+    
+    def set_alert_type(self, alerttype):
+        self.alert_type = alerttype
 
     def set_text_field(self, tf):
         self.text_field = tf.__dict__
@@ -287,7 +310,9 @@ class BottomSheet:
 
     def set_picker_type(self, picker_type):
         self.picker_type = picker_type
-        
+    
+    def set_preselected(self, preselected):
+        self.preselected = preselected
     
     def set_consent_text(self, consent):
         self.consent_text = consent

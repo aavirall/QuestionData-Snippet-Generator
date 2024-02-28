@@ -16,7 +16,7 @@ a.set_alert_type("")
 
 a.set_question_type("Partner_Gender_Preference")
 a.set_layout("option_card_v_list")
-a.set_selection_type("multi_selection")
+a.set_selection_type("20")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 # a.set_conditions("[{\"question_id\": \"3\", \"option\": \"3\"}]")
 a.set_next_button_text("Next")

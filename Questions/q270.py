@@ -13,7 +13,7 @@ a.set_alert("Some Members appreciate the predictive power of Vedic Science (horo
 a.set_alert_type("info")
 a.set_question_type("Birthplace")
 a.set_layout("option_card_text_field_snippet")
-a.set_selection_type("single_selection")
+a.set_selection_type("1")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 a.set_conditions("")
 a.set_next_button_text("Next")
