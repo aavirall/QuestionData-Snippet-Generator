@@ -1,52 +1,30 @@
-# import json
-# class A:
-#     def __init__(self):
-#         self.a = "aa"
-#         self.b = "bb"
+import requests
+import concurrent.futures
+import time
 
-#     def __str__(self):
-#         return str(self.__dict__)
+# The URL of your API endpoint
+url = 'http://localhost:3000/test/hello'
 
-#     def __repr__(self):
-#         return self.__str__()
+# Number of requests to send
+num_requests = 200
 
-# class B:
-#     def __init__(self):
-#         self.c = "aa"
-#         self.d = A()
-#     def __str__(self):
-#         return str(self.__dict__)
+def send_request(url):
+    """Send a single request and return the status code and response text."""
+    response = requests.get(url)
+    return response.status_code, response.text
 
-#     def __repr__(self):
-#         return self.__str__()
+# Use ThreadPoolExecutor to send requests in parallel
+with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+    # Prepare to send multiple requests in parallel
+    future_to_request = {executor.submit(send_request, url): i for i in range(num_requests)}
+    
+    for future in concurrent.futures.as_completed(future_to_request):
+        request_id = future_to_request[future]
+        try:
+            status_code, response_text = future.result()
+            print(f'Request #{request_id + 1}: Status Code = {status_code}, Response = {response_text}')
+        except Exception as exc:
+            print(f'Request #{request_id + 1} generated an exception: {exc}')
 
-# class MyClass:
-#     def __init__(self, key1, key2, key3):
-#         self.key1 = key1
-#         self.key2 = key2
-#         self.key3 = key3
-#         self.key4 = B()
-
-#     def __str__(self):
-#         return str(self.__dict__)
-
-#     def __repr__(self):
-#         # return json.dumps(self.__str__())
-#         return self.__str__()
-
-# # Example usage
-# my_instance = MyClass(key1="value1", key2="value2", key3="value3")
-# print(my_instance)
-
-
-import json
- 
-# Creating a dictionary
-Dictionary ={1:'Welcome', 2:'to',
-            3:'Geeks', 4:{"A":"aa"},
-            5:'Geeks'}
-  
-# Converts input dictionary into
-# string and stores it in json_string
-json_string = json.dumps(Dictionary)
-print(json_string)
+# Optional: pause to see the overall effect
+time.sleep(1)

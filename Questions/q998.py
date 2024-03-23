@@ -20,6 +20,7 @@ a.set_selection_type("20")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
 # a.set_conditions("[{\"question_id\": \"3\", \"option\": \"3\"}]")
 a.set_next_button_text("Next")
+a.set_next_button_id(f"qs_{a.question_id}_next")
 
 options = []
 o = Option()

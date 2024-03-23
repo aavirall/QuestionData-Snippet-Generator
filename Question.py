@@ -1,10 +1,10 @@
 import json
 
-TOTAL_QUESTIONS = 30
+TOTAL_QUESTIONS = 28
 class Question:
     plan_name = "dynamodb_put"
     params = {}
-    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"layout\",\"selection_type\",\"options\", \"question_id\", \"question_screen_id\", \"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\"]'
+    projections_string = '[\"title\", \"subtitle\", \"subtitle_2\", \"alert\", \"alert_type\", \"question_type\", \"layout\",\"selection_type\",\"options\", \"question_id\", \"question_screen_id\", \"conditions\", \"next_button_text\", \"progress\", \"consent_text\", \"subtitle_3\", \"next_button_id\", \"skip_button_id\", \"skip_button_text\"]'
     progress = ""
     partition_key = "questions"
     sort_key = "sort_key"
@@ -23,6 +23,8 @@ class Question:
     question_screen_id = "" 
     conditions = "" 
     next_button_text = "" 
+    next_button_id = ""
+    skip_button_id = ""
     skip_button_text = ""
     projections = projections_string
     def __init__(self):
@@ -86,6 +88,12 @@ class Question:
     def set_skip_button_text(self, skip_button_text):
         self.skip_button_text = skip_button_text
 
+    def set_next_button_id(self, next_button_id):
+        self.next_button_id = next_button_id
+    
+    def set_skip_button_id(self, skip_button_id):
+        self.skip_button_id = skip_button_id
+
     def set_projections(self, projections):
         self.projections = projections
 
@@ -111,6 +119,8 @@ class Question:
         params["conditions"] = str(self.conditions)
         params["next_button_text"] = str(self.next_button_text)
         params["skip_button_text"] = str(self.skip_button_text)
+        params["next_button_id"] = str(self.next_button_id)
+        params["skip_button_id"] = str(self.skip_button_id)
         params["projections"] = str(self.projections)
 
         ret["plan_name"] = self.plan_name
@@ -239,6 +249,7 @@ class TextField:
         return json.dumps(self.__dict__)
     
 class BottomSheet:
+    id = ""
     selection_type = ""
     options = ""
     title = ""
@@ -254,14 +265,21 @@ class BottomSheet:
     picker_type = ""
 
     button_1_text = ""
-    button_1_icon = ""
+    button_1_left_icon = ""
+    button_1_right_icon = ""
+    button_1_id = ""
     button_2_text = ""
-    button_2_icon = ""
+    button_2_left_icon = ""
+    button_2_right_icon = ""
+    button_2_id = ""
     consent_text = ""
     preselected = ""
 
     def __init__(self):
         pass
+
+    def set_id(self, id):
+        self.id = id
 
     def set_selection_type(self, selection_type):
         self.selection_type = selection_type
@@ -281,14 +299,26 @@ class BottomSheet:
     def set_button_1_text(self, button_text):
         self.button_1_text = button_text
     
-    def set_button_1_icon(self, button_icon):
-        self.button_1_icon = button_icon
+    def set_button_1_left_icon(self, button_icon):
+        self.button_1_left_icon = button_icon
+
+    def set_button_1_right_icon(self, button_icon):
+        self.button_1_right_icon = button_icon
+    
+    def set_button_1_id(self, button_id):
+        self.button_1_id = button_id
     
     def set_button_2_text(self, button_text):
         self.button_2_text = button_text
     
-    def set_button_2_icon(self, button_icon):
-        self.button_2_icon = button_icon
+    def set_button_2_left_icon(self, button_icon):
+        self.button_2_left_icon = button_icon
+
+    def set_button_2_right_icon(self, button_icon):
+        self.button_2_right_icon = button_icon
+    
+    def set_button_2_id(self, button_id):
+        self.button_2_id = button_id
     
     def set_screen_type(self, screen_type):
         self.screen_type = screen_type

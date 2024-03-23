@@ -12,7 +12,7 @@ at.set_text("Please be thoughtful as this selection will impact your and other M
 a.set_subtitle(at)
 a.set_alert("")
 a.set_alert_type("")
-a.set_question_type("Intent")
+a.set_question_type("question_intent")
 a.set_layout("v_list")
 a.set_selection_type("1")
 a.set_progress(f"{int(a.question_id)/TOTAL_QUESTIONS :.2f}")
